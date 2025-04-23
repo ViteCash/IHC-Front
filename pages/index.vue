@@ -1,3 +1,5 @@
 <template>
-    <div><UButton>Click me</UButton></div>
+    <div class="p-4">
+        <ThemeToggle />
+    </div>
 </template>

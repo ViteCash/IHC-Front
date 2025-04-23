@@ -1,82 +1,18 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+@import "./colors.css";
 
 @theme static {
 	--font-sans: "DM Sans", sans-serif;
 	--font-sora: "Sora", sans-serif;
-	--color-dark-blue-50: #e5f2ff;
-	--color-dark-blue-100: #cfe8ff;
-	--color-dark-blue-200: #a9d1ff;
-	--color-dark-blue-300: #75b0ff;
-	--color-dark-blue-400: #3f7dff;
-	--color-dark-blue-500: #144bff;
-	--color-dark-blue-600: #0033ff;
-	--color-dark-blue-700: #0034ff;
-	--color-dark-blue-800: #002ee3;
-	--color-dark-blue-900: #0020c0;
-	--color-dark-blue-950: #000e66;
-
-	--color-sky-blue-50: #eaffff;
-	--color-sky-blue-100: #cbfeff;
-	--color-sky-blue-200: #9efaff;
-	--color-sky-blue-300: #5bf3ff;
-	--color-sky-blue-400: #01e0ff;
-	--color-sky-blue-500: #00c4e5;
-	--color-sky-blue-600: #009cc0;
-	--color-sky-blue-700: #037c9b;
-	--color-sky-blue-800: #0d637d;
-	--color-sky-blue-900: #105269;
-	--color-sky-blue-950: #033649;
-
-	--color-golden-tainoi-50: #fffaeb;
-	--color-golden-tainoi-100: #fdefc8;
-	--color-golden-tainoi-200: #fbde8c;
-	--color-golden-tainoi-300: #f8c44a;
-	--color-golden-tainoi-400: #f6b029;
-	--color-golden-tainoi-500: #f08f10;
-	--color-golden-tainoi-600: #d46a0b;
-	--color-golden-tainoi-700: #b0480d;
-	--color-golden-tainoi-800: #8f3911;
-	--color-golden-tainoi-900: #762f11;
-	--color-golden-tainoi-950: #441604;
 }
 
-@layer utilities {
-	.ring-no-inset {
-		--tw-ring-inset: unset !important;
-	}
-}
-
-.bg-hero-gradient {
-	background: radial-gradient(100% 595.03% at 0% 0%, #233edb 0%, #001283 45.5%, #000548 100%),
-		linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:focus {
-	transition: background-color 600000s 0s, color 600000s 0s;
-}
-
-input[data-autocompleted] {
-	background-color: transparent !important;
-}
-
-.hero-content {
-	strong {
-		font-weight: normal;
-	}
-
-	h1, h1 strong {
-		@apply text-dark-blue-50 text-[40px]/12 font-semibold font-sora;
-	}
-
-	strong s,
-	s strong {
-		@apply text-transparent bg-clip-text bg-gradient-to-b from-green-300 via-green-400 to-green-500;
-	}
-
-	strong u,
-	u strong {
-		@apply text-transparent bg-clip-text bg-gradient-to-b from-golden-tainoi-300 via-golden-tainoi-400 to-golden-tainoi-500;
-	}
+:root {
+    --ui-primary: var(--color-primary-500);
+    --ui-secondary: var(--color-secondary-500);
+    --ui-tertiary: var(--color-tertiary-500);
+    --ui-success: var(--color-success-500);
+    --ui-info: var(--color-info-500);
+    --ui-warning: var(--color-warning-500);
+    --ui-error: var(--color-error-500);
 }
