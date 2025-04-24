@@ -15,4 +15,5 @@
     --ui-info: var(--color-info-500);
     --ui-warning: var(--color-warning-500);
     --ui-error: var(--color-error-500);
+    --ui-bg: var(--color-surface);
 }

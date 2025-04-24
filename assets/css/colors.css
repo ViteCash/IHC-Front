@@ -82,6 +82,8 @@
     --color-error-800: #991b1b;
     --color-error-900: #7f1d1d;
     --color-error-950: #450a0a;
+
+    --color-surface: #ffffff;
 }
   
 .dark {
@@ -168,4 +170,6 @@
     --color-error-800: #fecaca;
     --color-error-900: #fee2e2;
     --color-error-950: #fef2f2;
+    
+    --color-surface: #111827;
 }
