@@ -6,7 +6,7 @@
 	"trailingComma": "none",
 	"bracketSpacing": true,
 	"arrowParens": "avoid",
-	"vueIndentScriptAndStyle": true,
+	"vueIndentScriptAndStyle": false,
 	"printWidth": 100,
 	"bracketSameLine": false
 }

@@ -6,15 +6,7 @@ export default defineNuxtConfig({
     modules: ['@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@nuxt/ui', '@vueuse/nuxt'],
     ui: {
         theme: {
-          colors: [
-            'primary',
-            'secondary',
-            'tertiary',
-            'info',
-            'success',
-            'warning',
-            'error'
-          ]
+            colors: ['primary', 'secondary', 'tertiary', 'info', 'success', 'warning', 'error']
         }
-      }
+    }
 })
