@@ -22,7 +22,7 @@
 </script>
 
 <template>
-  <div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <!-- <div class="flex items-center justify-center min-h-screen bg-gray-100"> -->
     <UCard class="w-full max-w-md">
       <template #header>
         <h1 class="text-xl font-semibold">Iniciar sesión</h1>
@@ -64,5 +64,5 @@
         <UAlert type="error" :title="error" />
       </template>
     </UCard>
-  </div>
+  <!-- </div> -->
 </template>

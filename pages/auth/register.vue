@@ -30,7 +30,7 @@ const handleRegister = async () => {
 </script>
 
 <template>
-  <div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <!-- <div class="flex items-center justify-center min-h-screen bg-gray-100"> -->
     <UCard class="w-full max-w-md">
       <template #header>
         <h1 class="text-xl font-semibold">Crear cuenta</h1>
@@ -79,7 +79,9 @@ const handleRegister = async () => {
       </UForm>
 
       <div class="mt-4 text-center">
-        <p>¿Ya tienes una cuenta? <NuxtLink to="/auth/login" class="text-primary-500 hover:underline">Inicia sesión
+        <p>¿Ya tienes una cuenta? 
+          <NuxtLink to="/auth/login" class="text-primary-500 hover:underline">
+            Inicia sesión
           </NuxtLink>
         </p>
       </div>
@@ -88,7 +90,7 @@ const handleRegister = async () => {
         <UAlert type="error" :title="error" />
       </template>
     </UCard>
-  </div>
+  <!-- </div> -->
 </template>
 
 <style>
