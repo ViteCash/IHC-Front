@@ -1,6 +1,17 @@
+<script setup lang="ts">
+    import { useMediaQuery } from '@vueuse/core'
+    import {breakpoints} from '~/utils/breakpoints'
+    import Header from '~/components/Header/Desktop/Header.vue';    
+    import HeaderMobbile from '~/components/Header/Mobile/Header.vue';
+
+    const isMobile = useMediaQuery(`(max-width: ${breakpoints.md})`)
+</script>
+
+
 <template>
     <UModal>
-        <Header />
+        <HeaderMobbile v-if="isMobile"/>
+        <Header v-else />
         <main class="flex flex-col items-center justify-center h-full">
             <div
                 class="flex flex-col gap-10 relative items-center rounded-2xl bg-secondary-100 py-16 border-7 border-secondary-200 px-4 sm:px-24 bg-linear-to-tr from-secondary-50 to-white max-w-4xl"

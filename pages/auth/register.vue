@@ -30,13 +30,12 @@ const handleRegister = async () => {
 </script>
 
 <template>
-  <!-- <div class="flex items-center justify-center min-h-screen bg-gray-100"> -->
-    <UCard class="w-full max-w-md">
+    <UCard class="w-full flex flex-col justify-center">
       <template #header>
         <h1 class="text-xl font-semibold">Crear cuenta</h1>
       </template>
 
-      <UForm :state="formState" @submit="handleRegister">
+      <UForm :state="formState" @submit="handleRegister" class="w-full">
         <!-- <div class="grid grid-cols-2 gap-4"> -->
           <UFormField label="Nombre" name="firstName" class="mb-4">
             <UInput v-model="formState.firstName" placeholder="Nombre" autocomplete="given-name" class="w-full"/>
@@ -71,30 +70,29 @@ const handleRegister = async () => {
           </div>
         </UFormField>
 
-        <div class="mt-4">
+        <div class="mt-4 mb-8">
           <UButton type="submit" color="primary" block :loading="loading">
             Registrarse
           </UButton>
         </div>
       </UForm>
 
-      <div class="mt-4 text-center">
+      <!-- <div class="mt-4 text-center">
         <p>¿Ya tienes una cuenta? 
           <NuxtLink to="/auth/login" class="text-primary-500 hover:underline">
             Inicia sesión
           </NuxtLink>
         </p>
-      </div>
+      </div> -->
 
       <template v-if="error" #footer>
         <UAlert type="error" :title="error" />
       </template>
     </UCard>
-  <!-- </div> -->
 </template>
 
 <style>
-  .boder {
+  .border {
     border: 1px solid red;
   }
 </style>

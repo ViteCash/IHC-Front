@@ -22,8 +22,7 @@
 </script>
 
 <template>
-  <!-- <div class="flex items-center justify-center min-h-screen bg-gray-100"> -->
-    <UCard class="w-full max-w-md">
+    <UCard class="w-full flex flex-col justify-center">
       <template #header>
         <h1 class="text-xl font-semibold">Iniciar sesión</h1>
       </template>
@@ -33,7 +32,7 @@
           <UInput 
             v-model="formState.email" 
             type="email" 
-            placeholder="correo@ejemplo.com" 
+            placeholder="peruanito124@hotmail.com" 
             autocomplete="email"
             class="w-full"
           />
@@ -43,26 +42,25 @@
           <UInput 
             v-model="formState.password" 
             type="password" 
-            placeholder="Tu contraseña" 
+            placeholder="*********" 
             autocomplete="current-password"
             class="w-full"
           />
         </UFormField>
         
-        <div class="mt-4">
+        <div class="mt-4 mb-8">
           <UButton type="submit" color="primary" block :loading="loading">
             Iniciar sesión
           </UButton>
         </div>
       </UForm>
       
-      <div class="mt-4 text-center">
+      <!-- <div class="mt-4 text-center">
         <p>¿No tienes una cuenta? <NuxtLink to="/auth/register" class="text-primary-500 hover:underline">Regístrate</NuxtLink></p>
-      </div>
+      </div> -->
       
       <template v-if="error" #footer>
         <UAlert type="error" :title="error" />
       </template>
     </UCard>
-  <!-- </div> -->
 </template>
