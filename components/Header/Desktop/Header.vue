@@ -3,9 +3,9 @@
         <header class="flex justify-between max-w-[1200px] w-full mx-auto py-6">
             <div class="flex items-center">
                 <h1 class="text-2xl font-bold">
-                    <NuxtLink to="/" class="text-primary-500">
-                        My App
-                    </NuxtLink>
+                    <!-- <NuxtLink to="/" class="text-primary-500"> -->
+                        <img src="/EduIA.png" alt="Logo" class="w-35 inline-block">
+                    <!-- </NuxtLink> -->
                 </h1>
             </div>
             <div class="flex items-center gap-4">

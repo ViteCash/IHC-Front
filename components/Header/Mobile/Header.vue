@@ -1,13 +1,13 @@
 <template>
     <UDrawer>
-        <header class="flex justify-between max-w-[1200px] w-full mx-auto py-6">
-            <div class="flex items-center">
+        <header class="flex justify-between max-w-[1200px] w-full mx-auto py-6 flex items-center justify-center">
+            <!-- <div class="flex items-center">
                 <h1 class="text-2xl font-bold">
                     <NuxtLink to="/" class="text-primary-500">
                         My App
                     </NuxtLink>
                 </h1>
-            </div>
+            </div> -->
             <div class="flex items-center gap-4">
                 <UButton variant="soft" @click="handleLogin">
                     <!-- <NuxtLink to="/auth/login"> -->
