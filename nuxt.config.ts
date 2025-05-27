@@ -6,9 +6,9 @@ export default defineNuxtConfig({
     modules: ['@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@nuxt/ui', '@vueuse/nuxt', '@nuxtjs/supabase'],
     supabase: {
         redirectOptions: {
-            login: '/auth/login',
+            login: '/',
             callback: '/auth/confirm',
-            exclude: ['/auth/register']
+            exclude: ['/']
         }
     },
     runtimeConfig: {

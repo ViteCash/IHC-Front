@@ -15,7 +15,7 @@
         <p class="mt-2">Por favor, inicia sesión con una cuenta que tenga los permisos necesarios.</p>
         
         <div class="mt-6 flex space-x-4 justify-center">
-          <UButton @click="router.push('/auth/login')" color="primary">
+          <UButton @click="router.push('/')" color="primary">
             Iniciar sesión
           </UButton>
           <UButton @click="router.push('/')" color="gray">

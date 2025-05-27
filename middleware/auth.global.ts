@@ -3,17 +3,17 @@ import { useAuthUser } from "~/composables/useAuthUser"
 export default defineNuxtRouteMiddleware(async (to) => {
   const { user, userProfile, fetchUserProfile } = useAuthUser()
   
-  // Rutas públicas que no requieren autenticación
-  const publicRoutes = ['/auth/login', '/auth/register', '/auth/confirm']
+  // // Rutas públicas que no requieren autenticación
+  // const publicRoutes = ['/auth/login', '/auth/register', '/auth/confirm']
   
-  // Si la ruta es pública, permitir acceso
-  if (publicRoutes.includes(to.path)) {
+  // // Si la ruta es pública, permitir acceso
+  if (['/','/auth/confirm'].includes(to.path)) {
     return
   }
   
   // Verificar si el usuario está autenticado
   if (!user.value) {
-    return navigateTo('/auth/login')
+    return navigateTo('/')
   }
   
   // Cargar perfil si aún no está cargado

@@ -13,7 +13,7 @@
         <p>Se ha enviado un enlace de confirmación a tu correo electrónico.</p>
         <p class="mt-2">Por favor, revisa tu bandeja de entrada y sigue las instrucciones para activar tu cuenta.</p>
         
-        <UButton class="mt-6" @click="router.push('/auth/login')" color="primary">
+        <UButton class="mt-6" @click="router.push('/')" color="primary">
           Volver al inicio de sesión
         </UButton>
       </div>

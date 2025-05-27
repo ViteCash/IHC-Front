@@ -30,8 +30,8 @@
 </template>
 
 <script lang="ts" setup>
-    import Login from '~/pages/auth/login.vue';
-    import Register from '~/pages/auth/register.vue';
+    import Login from '~/components/auth/login.vue';
+    import Register from '~/components/auth/register.vue';
 
     const clickLogin = ref(false)
     const clickRegister = ref(false)

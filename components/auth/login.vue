@@ -9,9 +9,11 @@
 
     const handleLogin = async () => {
       const data = await login(formState.email, formState.password)
-      
       if (data?.user) {
-          const { userProfile } = useAuthUser()
+          const { userProfile, fetchUserProfile } = useAuthUser()
+
+          await fetchUserProfile()
+        
           if (userProfile.value?.role === 'profesor') {
               router.push('/profesor/dashboard')
           } else {

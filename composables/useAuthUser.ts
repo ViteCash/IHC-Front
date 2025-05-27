@@ -101,7 +101,7 @@ export const useAuthUser = () => {
       if (data.user) {
         await fetchUserProfile()
       }
-      
+      console.log(user)
       return data
     } catch (err: any) {
       error.value = err.message
