@@ -85,7 +85,7 @@ const handleRegister = async () => {
         </p>
       </div> -->
 
-      <template v-if="error" #footer>
+      <template v-if="error" #footer color="error">
         <UAlert type="error" :title="error" />
       </template>
     </UCard>

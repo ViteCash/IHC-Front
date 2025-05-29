@@ -12,7 +12,7 @@
     <UModal>
         <HeaderMobbile v-if="isMobile"/>
         <Header v-else />
-        <main class="flex flex-col items-center justify-center h-full">
+        <main class="flex flex-col items-center h-full p-5">
             <div
                 class="flex flex-col gap-10 relative items-center rounded-2xl bg-secondary-100 py-16 border-7 border-secondary-200 px-4 sm:px-24 bg-linear-to-tr from-secondary-50 to-white max-w-4xl"
             >
@@ -27,3 +27,9 @@
         </main>
     </UModal>
 </template>
+
+<style scoped>
+   .border {
+    border: 1px solid red;
+   }
+</style>

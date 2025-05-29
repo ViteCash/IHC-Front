@@ -18,7 +18,7 @@
           <UButton @click="router.push('/')" color="primary">
             Iniciar sesión
           </UButton>
-          <UButton @click="router.push('/')" color="gray">
+          <UButton @click="router.push('/')" color="primary">
             Ir al inicio
           </UButton>
         </div>

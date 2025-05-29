@@ -61,7 +61,7 @@
         <p>¿No tienes una cuenta? <NuxtLink to="/auth/register" class="text-primary-500 hover:underline">Regístrate</NuxtLink></p>
       </div> -->
       
-      <template v-if="error" #footer>
+      <template v-if="error" #footer color="error">
         <UAlert type="error" :title="error" />
       </template>
     </UCard>

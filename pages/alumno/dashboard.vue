@@ -13,7 +13,7 @@
     <UContainer class="py-8">
       <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-bold">Panel de Alumno</h1>
-        <UButton @click="handleLogout" color="primary">Cerrar sesión</UButton>
+        <UButton @click="handleLogout" color="secondary">Cerrar sesión</UButton>
       </div>
       
       <UCard>

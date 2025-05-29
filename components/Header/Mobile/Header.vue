@@ -45,6 +45,10 @@
         clickRegister.value = true
         clickLogin.value = false
     }
-
-
 </script>
+
+<style scoped>
+   .border {
+        border: 1px solid red;
+   }
+</style>
