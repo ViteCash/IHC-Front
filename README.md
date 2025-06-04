@@ -73,3 +73,30 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+# Documentación Técnica - IHC-Front
+
+## Índice
+
+- [Visión General](#visión-general)
+- [Componentes Principales](#componentes-principales)
+  - [Header](#header)
+  - [CardWeek](#cardweek)
+  - [DocumentUploader](#documentuploader)
+- [Páginas Principales](#páginas-principales)
+  - [Página Principal (`pages/index.vue`)](#página-principal)
+  - [Dashboard Alumno (`pages/alumno/dashboard.vue`)](#dashboard-alumno)
+  - [Cursos de Alumno (`pages/alumno/cursos/[name].vue` y `page.[details].vue`)](#cursos-de-alumno)
+  - [Dashboard Profesor (`pages/profesor/dashboard.vue`)](#dashboard-profesor)
+- [Composables principales](#composables-principales)
+  - [useStudentCourses](#usestudentcourses)
+  - [useDocumentUploader](#usedocumentuploader)
+  - [useAuthUser](#useauthuser)
+- [API y Lógica de Servidor](#api-y-lógica-de-servidor)
+- [Configuración del Proyecto](#configuración-del-proyecto)
+- [Referencias y Setup](#referencias-y-setup)
+
+---
+
+
+
