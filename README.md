@@ -103,4 +103,30 @@ Este proyecto es una aplicación web construida con Nuxt, orientada a la gestió
 
 ---
 
+## Componentes Principales
+
+### Header
+
+- Se utiliza en la mayoría de las páginas para mostrar la navegación principal.
+- Ejemplo de uso:  
+
+  ```vue
+  <Header />
+  ```
+
+### CardWeek
+
+- Muestra información de una semana o sección de un curso.
+- Permite navegar a los detalles de la semana o sección correspondiente.
+- Props: `number` (Número de semana/sección).
+- Ejemplo de lógica interna:  
+
+  ```typescript
+  const props = defineProps({ number: { type: Number, required: true } })
+  const redirectToDetails = () => {
+    let details = props.number == 1 ? 'general' : props.number - 1
+    router.push(`/alumno/cursos/page.${details}`)
+  }
+  ```
+
 
