@@ -165,4 +165,34 @@ Este proyecto es una aplicación web construida con Nuxt, orientada a la gestió
 ---
 
 ## Composables Principales
+### useStudentCourses
+
+- Archivo: `composables/useStudentCourses.ts`
+- Obtiene los cursos en los que está matriculado el alumno mediante una llamada a `/api/student/courses`.
+- Devuelve: cursos, estado de carga, error, función de refresco y cantidad de cursos.
+
+### useDocumentUploader
+
+- Archivo: `composables/useDocumentUploader.ts`
+- Maneja la lógica de carga, validación y gestión de archivos.
+- Métodos principales: `handleSubmit`, `removeFile`, `clearError`, `getFileClassIcon`.
+
+### useAuthUser
+
+- Archivo: `composables/useAuthUser.ts`
+- Gestiona la autenticación y perfil del usuario.
+- Métodos: registro, login, logout, verificación de roles, carga de perfil, etc.
+
+---
+
+## API y Lógica de Servidor
+
+- Archivo principal: `server/api/student/courses.get.ts`
+- Funcionalidad:
+  - Valida que el usuario sea estudiante.
+  - Obtiene los cursos en los que está matriculado el estudiante desde Supabase.
+  - Devuelve un listado formateado de cursos.
+  - Manejo de errores y estados de autenticación.
+
+---
 
