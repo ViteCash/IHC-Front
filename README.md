@@ -1,79 +1,3 @@
-# Nuxt Minimal Starter
-
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
-
-## Setup
-
-Make sure to install dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-
 # Documentación Técnica - IHC-Front
 
 ## Índice
@@ -97,6 +21,7 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 - [Referencias y Setup](#referencias-y-setup)
 
 ---
+
 ## Visión General
 
 Este proyecto es una aplicación web construida con Nuxt, orientada a la gestión de clases, cursos y materiales tanto para alumnos como para profesores. Utiliza Vue 3, Pinia para el manejo de estados, Supabase para la creación y el manejo de la base de datos sumando el uso de sus funcionalidades de autenticación y una arquitectura modular moderna.
@@ -128,6 +53,7 @@ Este proyecto es una aplicación web construida con Nuxt, orientada a la gestió
     router.push(`/alumno/cursos/page.${details}`)
   }
   ```
+
 ### DocumentUploader
 
 - Permite al usuario cargar documentos, arrastrar y soltar archivos, y gestiona el estado del archivo a subir.
@@ -165,6 +91,7 @@ Este proyecto es una aplicación web construida con Nuxt, orientada a la gestió
 ---
 
 ## Composables Principales
+
 ### useStudentCourses
 
 - Archivo: `composables/useStudentCourses.ts`
@@ -195,6 +122,7 @@ Este proyecto es una aplicación web construida con Nuxt, orientada a la gestió
   - Manejo de errores y estados de autenticación.
 
 ---
+
 ## Configuración del Proyecto
 
 - Archivo principal: `nuxt.config.ts`
@@ -225,5 +153,4 @@ Este proyecto es una aplicación web construida con Nuxt, orientada a la gestió
 
 - Consulta la [Documentación oficial de Nuxt](https://nuxt.com/docs/getting-started/introduction) para personalizaciones avanzadas.
 
----
 
