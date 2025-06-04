@@ -128,5 +128,41 @@ Este proyecto es una aplicación web construida con Nuxt, orientada a la gestió
     router.push(`/alumno/cursos/page.${details}`)
   }
   ```
+### DocumentUploader
 
+- Permite al usuario cargar documentos, arrastrar y soltar archivos, y gestiona el estado del archivo a subir.
+- Se integra fuertemente con la lógica de composables para manejo de archivos.
+
+---
+
+## Páginas Principales
+
+### Página Principal
+
+- Archivo: `pages/index.vue`
+- Muestra un mensaje de bienvenida y el componente `DocumentUploader` para cargar y transformar documentos en flashcards, tests y resúmenes mediante IA.
+
+### Dashboard Alumno
+
+- Archivo: `pages/alumno/dashboard.vue`
+- Permite al alumno ver sus cursos, acceder a su perfil y cerrar sesión.
+- Utiliza composables para obtener la lista de cursos del estudiante y gestiona la navegación entre cursos.
+
+### Cursos de Alumno
+
+- Archivos: 
+  - `pages/alumno/cursos/[name].vue` (Lista de semanas del curso)
+  - `pages/alumno/cursos/page.[details].vue` (Detalle de semana o sección)
+- Permiten al alumno ver el detalle de un curso y navegar por semanas o secciones.
+- Integración con componentes: `HeaderDashboard`, `CardWeek`.
+
+### Dashboard Profesor
+
+- Archivo: `pages/profesor/dashboard.vue`
+- Permite al profesor gestionar sus clases y alumnos.
+- Vista personalizada para cada usuario según su rol.
+
+---
+
+## Composables Principales
 
