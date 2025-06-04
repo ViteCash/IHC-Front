@@ -3,7 +3,7 @@ export default defineNuxtConfig({
     compatibilityDate: '2024-11-01',
     devtools: { enabled: true },
     css: ['~/assets/css/main.css'],
-    modules: ['@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@nuxt/ui', '@vueuse/nuxt', '@nuxtjs/supabase'],
+    modules: ['@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@nuxt/ui', '@vueuse/nuxt', '@nuxtjs/supabase', '@pinia/nuxt'],
     supabase: {
         redirectOptions: {
             login: '/',
@@ -15,7 +15,7 @@ export default defineNuxtConfig({
         public: {
             supabase: {
                 url: process.env.SUPABASE_URL,
-                key: process.env.SUPABASE_KEY,
+                key: process.env.SUPABASE_SERVICE_KEY,
             }
         }
     },
