@@ -97,6 +97,10 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 - [Referencias y Setup](#referencias-y-setup)
 
 ---
+## Visión General
 
+Este proyecto es una aplicación web construida con Nuxt, orientada a la gestión de clases, cursos y materiales tanto para alumnos como para profesores. Utiliza Vue 3, Pinia para el manejo de estados, Supabase para la creación y el manejo de la base de datos sumando el uso de sus funcionalidades de autenticación y una arquitectura modular moderna.
+
+---
 
 
