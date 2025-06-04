@@ -195,4 +195,35 @@ Este proyecto es una aplicación web construida con Nuxt, orientada a la gestió
   - Manejo de errores y estados de autenticación.
 
 ---
+## Configuración del Proyecto
+
+- Archivo principal: `nuxt.config.ts`
+  - Configuración de módulos, temas de UI, integración con Supabase, rutas protegidas y variables de entorno.
+- Uso de módulos como: `@nuxt/fonts`, `@nuxt/icon`, `@nuxt/image`, `@vueuse/nuxt`, `@nuxtjs/supabase`, `@pinia/nuxt`.
+
+---
+
+## Ejecución
+
+- Si deseas ejecutar el proyecto primero debes solicitar a algún miembro del equipo de desarrollo las variables de entorno.  
+  
+- Clonar el repositorio:  
+
+```bash
+    git clone https://github.com/llVitell/IHC-Front.git
+```
+  
+- Instalar las dependencias
+```bash
+  npm install
+  ```  
+    
+- Ejecutar y abrir en `http://localhost:3000`  
+```bash
+  npm run dev
+  ```  
+
+- Consulta la [Documentación oficial de Nuxt](https://nuxt.com/docs/getting-started/introduction) para personalizaciones avanzadas.
+
+---
 
