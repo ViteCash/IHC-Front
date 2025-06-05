@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'Usuario no autenticado'
       })
     }
-    console.log('Usuario autenticado:', user.id)
+    // console.log('Usuario autenticado:', user.id)
     // Verificar que sea un estudiante
     const supabase = serverSupabaseServiceRole(event)
     
@@ -45,7 +45,7 @@ export default defineEventHandler(async (event) => {
     // console.log('Matrículas obtenidas:', enrollments)
 
     if (enrollmentsError) {
-      console.error('Error al obtener las matrículas:', enrollmentsError)
+      // console.error('Error al obtener las matrículas:', enrollmentsError)
       throw createError({
         statusCode: 500,
         statusMessage: 'Error al obtener las matrículas del estudiante'
@@ -101,7 +101,7 @@ export default defineEventHandler(async (event) => {
       courseCode: course.course_code,
     }))
 
-    console.log('Cursos formateados:', formattedCourses)
+    // console.log('Cursos formateados:', formattedCourses)
 
     return {
       success: true,
