@@ -15,8 +15,12 @@ const redirectToCourse = (name: string) => {
   router.push(`/alumno/cursos/${name}`)
 }
 
+const redirectToProfile = () => {
+  router.push('/alumno/perfil')
+}
+
 const { courses, isLoading, error, refresh, count } = useStudentCourses()
-console.log('Courses:', courses.value)
+// console.log('Courses:', courses.value)
 
 
 </script>
@@ -27,12 +31,20 @@ console.log('Courses:', courses.value)
       <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-bold">Panel de Alumno</h1>
         <UPopover class="flex flex-col gap-2 w-28 justify-end items-end">
-          <img src="../../public/user.ico" alt="User Avatar" class="rounded-full cursor-pointer"
-            style="width: 32px; height: 30px; cursor: pointer;" />
+          <!-- <img src="../../public/user.ico" alt="User Avatar" class="rounded-full cursor-pointer" -->
+          <!-- style="width: 32px; height: 30px; cursor: pointer;" /> -->
+          <div class="flex justify-center mb-6 cursor-pointer">
+            <UAvatar size="2xl"
+              :text="(userProfile?.first_name?.[0].toUpperCase() || '') + (userProfile?.last_name?.[0].toLowerCase() || '')"
+              color="primary" 
+              class="cursor-pointer"
+            />
+          </div>
 
           <template #content>
             <div class="flex flex-col items-center gap-2 justify-center h-full">
-              <UButton class="flex justify-center cursor-pointer w-full" color="secondary">Perfil</UButton>
+              <UButton @click="redirectToProfile" class="flex justify-center cursor-pointer w-full" color="secondary">
+                Perfil</UButton>
               <UButton @click="handleLogout" class="cursor-pointer" color="neutral">
                 Cerrar sesión
               </UButton>
@@ -61,7 +73,8 @@ console.log('Courses:', courses.value)
                 <p v-else-if="courses.length === 0">No hay cursos</p>
                 <!-- <p v-else>{{courses[0].title}}</p> -->
                 <div v-else class="flex flew-row gap-4">
-                  <div v-for="course in courses" :key="course.id" class="border-radio p-2 bg-secondary-500 text-white" @click="redirectToCourse(course.title)">
+                  <div v-for="course in courses" :key="course.id" class="border-radio p-2 bg-secondary-500 text-white"
+                    @click="redirectToCourse(course.title)">
                     <h4 class="text-lg font-semibold">{{ course.title }} > </h4>
                   </div>
                 </div>
