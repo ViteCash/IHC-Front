@@ -2,8 +2,25 @@
 const { logout, userProfile } = useAuthUser()
 const route = useRouter()
 
+const props = defineProps({
+    courseName: {
+        type: String,
+        required: true
+    }
+})
+
+const activeTab = ref('tablon')
+
 const toInitPage = () => {
-    route.push('/alumno/dashboard')
+    activeTab.value = 'tablon'
+    // route.push('/alumno/dashboard')
+    route.push(`/alumno/cursos/${props.courseName}`)
+}
+
+const toMembersPage = () => {
+    activeTab.value = 'personas'
+    console.log('courseName', props.courseName)
+    route.push(`/alumno/cursos/member.${props.courseName}`)
 }
 
 const handleLogout = async () => {
@@ -14,21 +31,31 @@ const handleLogout = async () => {
 const redirectToProfile = () => {
     route.push('/alumno/perfil')
 }
-
 </script>
 
 <template>
-    <div>
+    <div class="mt-4">
         <UPopover>
             <div class="flex justify-around items-center mb-6 p-2">
                 <img src="../../../public/EduIA.png" alt="" class="w-35 inline-block">
                 <div class="flex flex-row items-center justify-center gap-4">
-                    <p @click="toInitPage" class="cursor-pointer bg-primary-500 text-white p-2 border-radius">Tablón</p>
-                    <p class="cursor-pointer">Personas</p>
+                    <p @click="toInitPage" 
+                       :class="[
+                         'cursor-pointer p-2 border-radius transition-colors',
+                         activeTab === 'tablon' ? 'bg-primary-500 text-white' : 'hover:bg-gray-100'
+                       ]">
+                       Tablón
+                    </p>
+                    <p @click="toMembersPage" 
+                       :class="[
+                         'cursor-pointer p-2 border-radius transition-colors',
+                         activeTab === 'personas' ? 'bg-primary-500 text-white' : 'hover:bg-gray-100'
+                       ]">
+                       Personas
+                    </p>
                 </div>
+                
                 <UPopover class="flex flex-col gap-2 w-28 justify-end items-end">
-                    <!-- <img src="../../../public/user.ico" alt="User Avatar" class="rounded-full cursor-pointer"
-                        style="width: 32px; height: 30px; cursor: pointer;" /> -->
                     <div class="flex justify-center mb-6 cursor-pointer">
                         <UAvatar size="2xl"
                             :text="(userProfile?.first_name?.[0].toUpperCase() || '') + (userProfile?.last_name?.[0].toLowerCase() || '')"

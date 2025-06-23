@@ -13,10 +13,11 @@ const courseStore = useCourseStore()
 courseStore.setCourseName(name)
 
 const weekNumber = ref(16)
+console.log('Course Name name.vue:', courseStore.currentCourseName)
 </script>
 
 <template>
-    <HeaderDashboard />
+    <HeaderDashboard :courseName="courseStore.currentCourseName" />
     <div
         class="flex justify-center items-center rounded-xl h-25 bg-primary-500 text-white text-2xl font-bold"
     >
