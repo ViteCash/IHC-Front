@@ -11,10 +11,11 @@ const { details } = route.params as { details: string }
 
 const courseStore = useCourseStore()
 const courseName = computed(() => courseStore.currentCourseName)
+// console.log('Course Name page details:', courseName.value)
 </script>
 
 <template>
-    <HeaderDashboard />
+    <HeaderDashboard :courseName="courseName" />
     <div
         class="flex justify-center items-center rounded-xl h-25 bg-primary-500 text-white text-2xl font-bold"
     >
