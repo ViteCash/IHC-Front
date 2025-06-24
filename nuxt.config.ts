@@ -1,12 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     app: {
-    head: {
-      link: [
-        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
-      ]
-    }
-  },
+        head: {
+            link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }]
+        }
+    },
     compatibilityDate: '2024-11-01',
     devtools: { enabled: true },
     css: ['~/assets/css/main.css'],
@@ -18,7 +16,8 @@ export default defineNuxtConfig({
         '@vueuse/nuxt',
         '@nuxtjs/supabase',
         '@pinia/nuxt',
-        '@nuxtjs/color-mode'
+        '@nuxtjs/color-mode',
+        'pinia-plugin-persistedstate/nuxt'
     ],
     supabase: {
         redirectOptions: {
