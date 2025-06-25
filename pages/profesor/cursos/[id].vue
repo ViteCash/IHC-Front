@@ -39,15 +39,18 @@ interface StudentEnrollment {
 interface CourseMaterial {
   id: string;
   title: string;
-  description?: string;
-  fileUrl?: string;
-  createdAt?: string;
+  description: string;
+  file_name: string
+  file_url: string;
+  file_size: number;
+  created_at: string;
   [key: string]: any;
 }
 
 const students = ref<StudentEnrollment[]>([])
 const materials = ref<CourseMaterial[]>([])
 const loading = ref(false)
+const showMaterialUploader = ref(false)
 
 const studentForm = reactive({
   email: ''
@@ -56,7 +59,7 @@ const studentForm = reactive({
 const generatedQuiz = ref()
 
 const handleQuizGenerated = (quiz: any[]) => {
-    generatedQuiz.value = quiz
+  generatedQuiz.value = quiz
 }
 
 // Cargar datos del curso
@@ -67,7 +70,7 @@ const loadCourseData = async () => {
       getCourseStudents(courseId),
       getCourseMaterials(courseId)
     ])
-    
+
     students.value = studentsData.data.map((item: any) => ({
       enrollmentId: item.enrollmentId,
       enrolledAt: item.enrolledAt,
@@ -91,7 +94,7 @@ const handleAddStudent = async () => {
     await addStudentToCourse(courseId, studentForm.email)
     studentForm.email = ''
     await loadCourseData() // Recargar estudiantes
-    
+
     useToast().add({
       title: 'Estudiante añadido',
       description: 'El estudiante se ha añadido al curso exitosamente',
@@ -106,6 +109,20 @@ const handleAddStudent = async () => {
   }
 }
 
+const handleMaterialUploaded = async () => {
+  showMaterialUploader.value = false
+  await loadCourseData() // Recargar materiales
+}
+
+const handleMaterialDeleted = (materialId: string) => {
+  materials.value = materials.value.filter(m => m.id !== materialId)
+}
+
+const uploadMaterial = () => {
+  showMaterialUploader.value = true
+  generatedQuiz.value = null // Resetear quiz generado al abrir el modal
+}
+
 onMounted(loadCourseData)
 </script>
 
@@ -114,13 +131,14 @@ onMounted(loadCourseData)
     <UContainer class="py-8">
       <!-- Header -->
       <div class="flex items-center mb-6">
-        <UButton icon="i-heroicons-arrow-left" variant="ghost" @click="router.push('/profesor/dashboard')" class="mr-4" />
+        <UButton icon="i-heroicons-arrow-left" variant="ghost" @click="router.push('/profesor/dashboard')"
+          class="mr-4" />
         <h1 class="text-2xl font-bold">Gestión del Curso</h1>
       </div>
 
       <!-- Tabs usando la nueva sintaxis -->
       <UTabs :items="tabsItems" variant="link" class="gap-4 w-full" :ui="{ trigger: 'grow' }">
-        
+
         <!-- Students Tab -->
         <template #students="{ item }">
           <div class="mt-4">
@@ -138,11 +156,7 @@ onMounted(loadCourseData)
               <!-- Add Student Form -->
               <div class="p-4 border-b">
                 <UForm :state="studentForm" @submit="handleAddStudent" class="flex gap-2">
-                  <UInput 
-                    v-model="studentForm.email" 
-                    placeholder="Email del estudiante"
-                    class="flex-1"
-                  />
+                  <UInput v-model="studentForm.email" placeholder="Email del estudiante" class="flex-1" />
                   <UButton type="submit" icon="i-heroicons-user-plus">
                     Añadir
                   </UButton>
@@ -162,16 +176,12 @@ onMounted(loadCourseData)
                 </div>
 
                 <div v-else class="space-y-3">
-                  <div 
-                    v-for="enrollment in students" 
-                    :key="enrollment.enrollmentId"
-                    class="flex items-center justify-between p-3 border rounded-lg"
-                  >
+                  <div v-for="enrollment in students" :key="enrollment.enrollmentId"
+                    class="flex items-center justify-between p-3 border rounded-lg">
                     <div class="flex items-center space-x-3">
-                      <UAvatar 
+                      <UAvatar
                         :text="(enrollment.student.first_name?.[0] || '') + (enrollment.student.last_name?.[0] || '')"
-                        size="sm"
-                      />
+                        size="sm" />
                       <div>
                         <p class="font-medium">
                           {{ enrollment.student.first_name }} {{ enrollment.student.last_name }}
@@ -199,17 +209,36 @@ onMounted(loadCourseData)
                     <h3 class="text-lg font-medium">{{ item.label }}</h3>
                     <p class="text-sm text-gray-500 mt-1">Sube y gestiona los materiales del curso</p>
                   </div>
-                  <UButton icon="i-heroicons-document-plus">
-                    Subir Material
-                  </UButton>
+                  <UModal>
+                    <UButton icon="i-heroicons-document-plus" @click="uploadMaterial">
+                      Subir Material
+                    </UButton>
+                    <template #content>
+                      <!-- <MaterialUploader 
+                        :isOpen="showMaterialUploader" 
+                        :course-id="courseId"
+                        @material-uploaded="handleMaterialUploaded" /> -->
+                        <div class="overflow-y-auto max-h-[70vh] p-6">
+                          <DocumentUploader @quiz-generated="handleQuizGenerated" v-if="!generatedQuiz"/>
+                          <QuizDisplay :questions="generatedQuiz" v-else/>
+                        </div>
+                    </template>
+                  </UModal>
                 </div>
               </template>
 
-              <div class="p-4 flex justify-center items-center" v-if="!generatedQuiz">
-                <DocumentUploader @quiz-generated="handleQuizGenerated"/>
+              <div class="p-4">
+                <CourseMaterialsList 
+                  :materials="materials" 
+                  :loading="loading" 
+                  :show-delete-button="true"
+                  @material-deleted="handleMaterialDeleted" />
               </div>
-              <QuizDisplay v-else :questions="generatedQuiz" />
-            </UCard>
+
+              <!-- Material Uploader Modal -->
+              <!-- <MaterialUploader :isOpen="showMaterialUploader" :course-id="courseId"
+                @material-uploaded="handleMaterialUploaded" />-->
+            </UCard> 
           </div>
         </template>
       </UTabs>
