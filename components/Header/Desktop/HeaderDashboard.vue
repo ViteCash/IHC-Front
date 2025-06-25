@@ -9,18 +9,25 @@ const props = defineProps({
     }
 })
 
-const activeTab = ref('tablon')
+const { activeMenu, setActiveMenu } = useActiveMenu()
 
-const toInitPage = () => {
-    activeTab.value = 'tablon'
+setActiveMenu('tablon')
+
+const toTablonPage = () => {
+    setActiveMenu('tablon')
     // route.push('/alumno/dashboard')
     route.push(`/alumno/cursos/${props.courseName}`)
 }
 
 const toMembersPage = () => {
-    activeTab.value = 'personas'
+    setActiveMenu('personas')
     console.log('courseName', props.courseName)
     route.push(`/alumno/cursos/member.${props.courseName}`)
+}
+
+const toInitPage = () => {
+    setActiveMenu('tablon')
+    route.push('/alumno/dashboard')
 }
 
 const handleLogout = async () => {
@@ -37,19 +44,19 @@ const redirectToProfile = () => {
     <div class="mt-4">
         <UPopover>
             <div class="flex justify-around items-center mb-6 p-2">
-                <img src="../../../public/EduIA.png" alt="" class="w-35 inline-block">
+                <img src="../../../public/EduIA.png" alt="" class="w-35 inline-block cursor-pointer" @click="toInitPage" />
                 <div class="flex flex-row items-center justify-center gap-4">
-                    <p @click="toInitPage" 
+                    <p @click="toTablonPage" 
                        :class="[
                          'cursor-pointer p-2 border-radius transition-colors',
-                         activeTab === 'tablon' ? 'bg-primary-500 text-white' : 'hover:bg-gray-100'
+                         activeMenu === 'tablon' ? 'bg-primary-500 text-white' : 'hover:bg-gray-100'
                        ]">
                        Tablón
                     </p>
                     <p @click="toMembersPage" 
                        :class="[
                          'cursor-pointer p-2 border-radius transition-colors',
-                         activeTab === 'personas' ? 'bg-primary-500 text-white' : 'hover:bg-gray-100'
+                         activeMenu === 'personas' ? 'bg-primary-500 text-white' : 'hover:bg-gray-100'
                        ]">
                        Personas
                     </p>

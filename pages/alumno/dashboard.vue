@@ -68,14 +68,17 @@ const { courses, isLoading, error, refresh, count } = useStudentCourses()
               <template #header>
                 <h3 class="text-lg font-medium">Mis cursos</h3>
               </template>
-              <div class="p-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <p v-if="isLoading">Cargando cursos...</p>
                 <p v-else-if="courses.length === 0">No hay cursos</p>
                 <!-- <p v-else>{{courses[0].title}}</p> -->
                 <div v-else class="flex flew-row gap-4">
-                  <div v-for="course in courses" :key="course.id" class="border-radio p-2 bg-secondary-500 text-white"
+                  <div v-for="course in courses" :key="course.id" class="flex flex-col gap-1 p-4 bg-secondary-300 hover:bg-secondary-200 cursor-pointer rounded-lg"
                     @click="redirectToCourse(course.title)">
-                    <h4 class="text-lg font-semibold">{{ course.title }} > </h4>
+                    <h1 class="text-lg font-bold">{{ course.title }} > </h1>
+                     <p class="text-sm">
+                        {{ course.description }}
+                    </p>
                   </div>
                 </div>
                 <!-- <p v-for="course in courses">{{ courses[0].title }}</p> -->
