@@ -18,16 +18,14 @@ console.log('Course Name name.vue:', courseStore.currentCourseName)
 
 <template>
     <HeaderDashboard :courseName="courseStore.currentCourseName" />
-    <div
-        class="flex justify-center items-center rounded-xl h-25 bg-primary-500 text-white text-2xl font-bold"
-    >
-        <h1>{{ name.toUpperCase() }}</h1>
-    </div>
+    <div class="flex flex-col gap-5 max-w-[1200px] mx-auto">
+        <h1 class="text-2xl font-bold">{{ name.toUpperCase() }}</h1>
 
-    <div class="flex flex-row flex-wrap justify-center items-center h-100 gap-5">
-        <span v-for="w in weekNumber" :key="w">
-            <CardWeek v-bind:number="w" />
-        </span>
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-center items-center h-100 gap-5"
+        >
+            <CardWeek v-for="w in weekNumber" :key="w" v-bind:number="w" />
+        </div>
     </div>
 </template>
 
