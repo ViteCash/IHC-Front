@@ -24,7 +24,7 @@ console.log('Course Name name.vue:', courseStore.currentCourseName)
         <h1>{{ name.toUpperCase() }}</h1>
     </div>
 
-    <div class="flex flex-row flex-wrap justify-center items-center h-100 gap-10">
+    <div class="flex flex-row flex-wrap justify-center items-center h-100 gap-5">
         <span v-for="w in weekNumber" :key="w">
             <CardWeek v-bind:number="w" />
         </span>

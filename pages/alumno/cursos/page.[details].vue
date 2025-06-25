@@ -4,14 +4,38 @@ definePageMeta({
 })
 
 import { useCourseStore } from '~/stores/courseStore'
+import { useStudentCourses } from '~/composables/useStudentCourses'
 import HeaderDashboard from '~/components/Header/Desktop/HeaderDashboard.vue'
 
 const route = useRoute()
 const { details } = route.params as { details: string }
 
 const courseStore = useCourseStore()
+const { courses, refresh: refreshCourses } = useStudentCourses()
+
 const courseName = computed(() => courseStore.currentCourseName)
-// console.log('Course Name page details:', courseName.value)
+const courseId = ref<string | null>(null)
+const loading = ref(true)
+
+// Get course ID from the course name
+const loadCourseId = async () => {
+  try {
+    await refreshCourses()
+    const currentCourse = courses.value.find((course: any) => 
+      course.title === courseName.value
+    )
+    
+    if (currentCourse) {
+      courseId.value = currentCourse.id
+    }
+  } catch (error) {
+    console.error('Error loading course:', error)
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(loadCourseId)
 </script>
 
 <template>
@@ -21,45 +45,32 @@ const courseName = computed(() => courseStore.currentCourseName)
     >
         <h1>{{ courseName.toUpperCase() }}</h1>
     </div>
-    <div
-        class="flex flex-row h-120 items-center justify-center gap-20 p-4 bg-primary-50 mt-5 rounded-lg"
-    >
-        <div
-            class="w-50 h-10 flex items-center justify-center rounded-lg bg-primary-500 text-white text-lg font-bold"
-        >
-            <h2 v-if="details === 'general'">{{ details.toUpperCase() }}</h2>
-            <h2 v-else>SEMANA {{ details }}</h2>
+    
+    <div class="bg-primary-50 mt-5 rounded-lg p-6">
+        <div class="flex items-center justify-center mb-6">
+            <div
+                class="w-50 h-10 flex items-center justify-center rounded-lg bg-primary-500 text-white text-lg font-bold"
+            >
+                <h2 v-if="details === 'general'">{{ details.toUpperCase() }}</h2>
+                <h2 v-else>SEMANA {{ details }}</h2>
+            </div>
         </div>
 
-        <div class="flex flex-col items-center justify-center gap-4">
-            <USeparator color="primary" size="xl" class="w-150" />
+        <!-- Loading state -->
+        <div v-if="loading" class="text-center py-8">
+            <UIcon name="i-heroicons-arrow-path" class="animate-spin h-6 w-6 mx-auto mb-2" />
+            <p class="text-gray-500">Cargando curso...</p>
+        </div>
 
-            <div
-                class="w-150 h-10 flex items-center justify-start text-lg font-bold gap-5 cursor-pointer"
-            >
-                <img src="../../../public/image 4.png" class="w-8 rounded" />
-                <p>Silabo_del_curso.pdf</p>
-            </div>
+        <!-- Student Materials Component -->
+        <div v-else-if="courseId" class="max-w-6xl mx-auto">
+            <StudentMaterials :course-id="courseId" />
+        </div>
 
-            <USeparator color="primary" size="xl" class="w-150" />
-
-            <div
-                class="w-150 h-10 flex items-center justify-start text-lg font-bold gap-5 cursor-pointer"
-            >
-                <img src="../../../public/image 4.png" class="w-8 rounded" />
-                <p>Silabo_dosificado_del_curso.pdf</p>
-            </div>
-
-            <USeparator color="primary" size="xl" class="w-150" />
-
-            <div
-                class="w-150 h-10 flex items-center justify-start text-lg font-bold gap-5 cursor-pointer"
-            >
-                <img src="../../../public/image 4.png" class="w-8 rounded" />
-                <p>Libro.pdf</p>
-            </div>
-
-            <USeparator color="primary" size="xl" class="w-150" />
+        <!-- Fallback: No course found -->
+        <div v-else class="text-center py-8">
+            <UIcon name="i-heroicons-exclamation-triangle" class="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <p class="text-gray-500">No se pudo cargar la información del curso</p>
         </div>
     </div>
 </template>
