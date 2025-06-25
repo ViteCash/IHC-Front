@@ -73,10 +73,10 @@ const { courses, isLoading, error, refresh, count } = useStudentCourses()
                 <p v-else-if="courses.length === 0">No hay cursos</p>
                 <!-- <p v-else>{{courses[0].title}}</p> -->
                 <div v-else class="flex flew-row gap-4">
-                  <div v-for="course in courses" :key="course.id" class="flex flex-col gap-1 p-4 bg-secondary-300 hover:bg-secondary-200 cursor-pointer rounded-lg"
+                  <div v-for="course in courses" :key="course.id" class="flex flex-col gap-1 p-4 bg-secondary-900 hover:bg-secondary-800 cursor-pointer rounded-lg"
                     @click="redirectToCourse(course.title)">
-                    <h1 class="text-lg font-bold">{{ course.title }} > </h1>
-                     <p class="text-sm">
+                    <h1 class="text-lg font-bold text-white">{{ course.title }} > </h1>
+                     <p class="text-sm text-gray-300">
                         {{ course.description }}
                     </p>
                   </div>

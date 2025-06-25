@@ -214,14 +214,14 @@ onMounted(loadCourseData)
                       Subir Material
                     </UButton>
                     <template #content>
-                      <!-- <MaterialUploader 
+                      <MaterialUploader 
                         :isOpen="showMaterialUploader" 
                         :course-id="courseId"
-                        @material-uploaded="handleMaterialUploaded" /> -->
-                        <div class="overflow-y-auto max-h-[70vh] p-6">
+                        @material-uploaded="handleMaterialUploaded" />
+                        <!-- <div class="overflow-y-auto max-h-[70vh] p-6">
                           <DocumentUploader @quiz-generated="handleQuizGenerated" v-if="!generatedQuiz"/>
                           <QuizDisplay :questions="generatedQuiz" v-else/>
-                        </div>
+                        </div> -->
                     </template>
                   </UModal>
                 </div>
@@ -237,7 +237,7 @@ onMounted(loadCourseData)
 
               <!-- Material Uploader Modal -->
               <!-- <MaterialUploader :isOpen="showMaterialUploader" :course-id="courseId"
-                @material-uploaded="handleMaterialUploaded" />-->
+                @material-uploaded="handleMaterialUploaded" /> -->
             </UCard> 
           </div>
         </template>

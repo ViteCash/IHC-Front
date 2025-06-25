@@ -18,6 +18,7 @@
               v-model="materialForm.title" 
               placeholder="Ej: Semana 1 - Introducción"
               :disabled="isUploading"
+              class="w-full"
             />
           </div>
 
@@ -28,6 +29,7 @@
               placeholder="Breve descripción del material..."
               :disabled="isUploading"
               :rows="3"
+              class="w-full"
             />
           </div>
 

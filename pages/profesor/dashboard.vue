@@ -55,7 +55,7 @@ const handleLogout = async () => {
   <div class="min-h-screen bg-gray-50">
     <UContainer class="py-8">
       <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-bold">Panel de Alumno</h1>
+        <h1 class="text-2xl font-bold">Panel de profesor</h1>
         <UPopover class="flex flex-col gap-2 w-28 justify-end items-end">
           <div class="flex justify-center mb-6 cursor-pointer">
             <UAvatar size="xl"

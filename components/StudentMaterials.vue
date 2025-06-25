@@ -84,29 +84,31 @@
 
     <!-- Practice Modal -->
     <UModal v-model="showPracticeModal">
-      <UCard>
-        <template #header>
-          <div class="flex items-center justify-between">
-            <h3 class="text-lg font-semibold text-gray-900">
-              Práctica: {{ currentPracticeMaterial?.title }}
-            </h3>
-            <UButton color="neutral" variant="ghost" icon="i-heroicons-x-mark" @click="closePracticeModal" />
+      <template #content>
+        <UCard>
+          <template #header>
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-semibold text-gray-900">
+                Práctica: {{ currentPracticeMaterial?.title }}
+              </h3>
+              <UButton color="neutral" variant="ghost" icon="i-heroicons-x-mark" @click="closePracticeModal" />
+            </div>
+          </template>
+  
+          <div class="p-4">
+            <QuizDisplay 
+              v-if="currentQuestions"
+              :questions="currentQuestions"
+              @quiz-completed="handleQuizCompleted"
+            />
+            
+            <div v-else class="text-center py-8">
+              <UIcon name="i-heroicons-arrow-path" class="animate-spin h-8 w-8 mx-auto mb-4 text-primary-500" />
+              <p class="text-gray-600">Generando preguntas de práctica...</p>
+            </div>
           </div>
-        </template>
-
-        <div class="p-4">
-          <QuizDisplay 
-            v-if="currentQuestions"
-            :questions="currentQuestions"
-            @quiz-completed="handleQuizCompleted"
-          />
-          
-          <div v-else class="text-center py-8">
-            <UIcon name="i-heroicons-arrow-path" class="animate-spin h-8 w-8 mx-auto mb-4 text-primary-500" />
-            <p class="text-gray-600">Generando preguntas de práctica...</p>
-          </div>
-        </div>
-      </UCard>
+        </UCard>
+      </template>
     </UModal>
   </div>
 </template>

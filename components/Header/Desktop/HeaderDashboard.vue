@@ -21,13 +21,18 @@ const toTablonPage = () => {
 
 const toMembersPage = () => {
     setActiveMenu('personas')
-    console.log('courseName', props.courseName)
+    // console.log('courseName', props.courseName)
     route.push(`/alumno/cursos/member.${props.courseName}`)
 }
 
 const toInitPage = () => {
     setActiveMenu('tablon')
     route.push('/alumno/dashboard')
+}
+
+const toQuizzPage = () => {
+    setActiveMenu('quizz')
+    route.push(`/alumno/cursos/quizz`)
 }
 
 const handleLogout = async () => {
@@ -60,6 +65,13 @@ const redirectToProfile = () => {
                        ]">
                        Personas
                     </p>
+                    <p
+                        @click="toQuizzPage"
+                        class="cursor-pointer bg-primary-500/0 hover:bg-secondary-500 text-primary-500 font-extrabold hover:text-white transition-colors duration-200 p-2 rounded"
+                    >
+                        Haz un Quizz
+                    </p>
+
                 </div>
                 
                 <UPopover class="flex flex-col gap-2 w-28 justify-end items-end">
