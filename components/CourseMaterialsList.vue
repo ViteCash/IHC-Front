@@ -15,11 +15,8 @@
 
     <!-- Materials list -->
     <div v-else class="space-y-3">
-      <div 
-        v-for="material in materials" 
-        :key="material.id"
-        class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow"
-      >
+      <div v-for="material in materials" :key="material.id"
+        class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
         <div class="flex items-start justify-between">
           <div class="flex items-start space-x-3 flex-1">
             <!-- PDF Icon -->
@@ -47,70 +44,52 @@
           <!-- Actions -->
           <div class="flex items-center space-x-2 ml-4">
             <!-- View/Download button -->
-            <UButton
-              size="sm"
-              variant="outline"
-              icon="i-heroicons-eye"
-              @click="viewMaterial(material)"
-            >
+            <UButton size="sm" variant="outline" icon="i-heroicons-eye" @click="viewMaterial(material)">
               Ver
             </UButton>
 
             <!-- Delete button (only for teachers) -->
-            <UButton
-              v-if="showDeleteButton"
-              size="sm"
-              color="error"
-              variant="ghost"
-              icon="i-heroicons-trash"
-              @click="confirmDelete(material)"
-              :loading="deletingId === material.id"
-            />
+            <UModal>
+              <UButton v-if="showDeleteButton" size="sm" color="error" variant="ghost" icon="i-heroicons-trash"
+                @click="confirmDelete(material)" :loading="deletingId === material.id" />
+
+              <template #content>
+                <UCard>
+                  <template #header>
+                    <h3 class="text-base font-semibold text-gray-900">
+                      Confirmar eliminación
+                    </h3>
+                  </template>
+
+                  <div class="py-4">
+                    <p class="text-sm text-gray-600">
+                      ¿Estás seguro de que quieres eliminar el material
+                      <strong>"{{ materialToDelete?.title }}"</strong>?
+                    </p>
+                    <p class="text-sm text-gray-500 mt-2">
+                      Esta acción no se puede deshacer.
+                    </p>
+                  </div>
+
+                  <template #footer>
+                    <div class="flex justify-end space-x-3">
+                      <UButton color="error" @click="deleteMaterial" :loading="isDeleting">
+                        Eliminar
+                      </UButton>
+                    </div>
+                  </template>
+                </UCard>
+              </template>
+            </UModal>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Delete confirmation modal -->
-    <!-- <UModal v-model="showDeleteModal">
-      <UCard>
-        <template #header>
-          <h3 class="text-base font-semibold text-gray-900">
-            Confirmar eliminación
-          </h3>
-        </template>
+    <UModal v-model="showDeleteModal">
 
-        <div class="py-4">
-          <p class="text-sm text-gray-600">
-            ¿Estás seguro de que quieres eliminar el material 
-            <strong>"{{ materialToDelete?.title }}"</strong>?
-          </p>
-          <p class="text-sm text-gray-500 mt-2">
-            Esta acción no se puede deshacer.
-          </p>
-        </div>
-
-        <template #footer>
-          <div class="flex justify-end space-x-3">
-            <UButton 
-              color="neutral" 
-              variant="ghost" 
-              @click="showDeleteModal = false"
-              :disabled="isDeleting"
-            >
-              Cancelar
-            </UButton>
-            <UButton 
-              color="error" 
-              @click="deleteMaterial"
-              :loading="isDeleting"
-            >
-              Eliminar
-            </UButton>
-          </div>
-        </template>
-      </UCard>
-    </UModal> -->
+    </UModal>
   </div>
 </template>
 

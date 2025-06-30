@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full max-w-4xl mx-auto">
+    <div class="w-full overflow-y-auto">
         <div class="mb-6">
             <h2 class="text-2xl font-bold text-gray-900 mb-2">Quiz Generado</h2>
             <p class="text-gray-600">{{ questions.length }} preguntas basadas en el documento</p>

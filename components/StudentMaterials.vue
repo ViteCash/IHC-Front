@@ -15,17 +15,15 @@
 
     <!-- Materials list -->
     <div v-else class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      <div 
-        v-for="material in materials" 
-        :key="material.id"
+      <div v-for="material in materials" :key="material.id"
         class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-all duration-200 cursor-pointer group"
-        @click="openMaterial(material)"
-      >
+        @click="openMaterial(material)">
         <div class="space-y-3">
           <!-- PDF Icon and title -->
           <div class="flex items-start space-x-3">
             <div class="flex-shrink-0">
-              <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
+              <div
+                class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
                 <UIcon name="i-heroicons-document-text" class="h-8 w-8 text-red-600" />
               </div>
             </div>
@@ -50,33 +48,45 @@
           <!-- Actions -->
           <div class="flex items-center justify-between pt-2 border-t border-gray-100">
             <div class="flex items-center space-x-3">
-              <UButton
-                size="xs"
-                variant="outline"
-                icon="i-heroicons-eye"
-                @click.stop="viewMaterial(material)"
-              >
+              <UButton size="xs" variant="outline" icon="i-heroicons-eye" @click.stop="viewMaterial(material)">
                 Ver
               </UButton>
-              <UButton
-                size="xs"
-                variant="outline"
-                icon="i-heroicons-arrow-down-tray"
-                @click.stop="downloadMaterial(material)"
-              >
+              <UButton size="xs" variant="outline" icon="i-heroicons-arrow-down-tray"
+                @click.stop="downloadMaterial(material)">
                 Descargar
               </UButton>
             </div>
-            
+
             <!-- Practice button -->
-            <UButton
-              size="xs"
-              icon="i-heroicons-academic-cap"
-              @click.stop="startPractice(material)"
-              :loading="generatingQuiz === material.id"
-            >
-              {{ generatingQuiz === material.id ? 'Generando...' : 'Practicar' }}
-            </UButton>
+            <UModal>
+              <UButton size="xs" icon="i-heroicons-academic-cap" @click.stop="startPractice(material)"
+                :loading="generatingQuiz === material.id">
+                {{ generatingQuiz === material.id ? 'Generando...' : 'Practicar' }}
+              </UButton>
+
+              <template #content>
+                <UCard>
+                  <template #header>
+                    <div class="flex items-center justify-between">
+                      <h3 class="text-lg font-semibold text-gray-900">
+                        Práctica: {{ currentPracticeMaterial?.title }}
+                      </h3>
+                      <UButton color="neutral" variant="ghost" icon="i-heroicons-x-mark" @click="closePracticeModal" />
+                    </div>
+                  </template>
+
+                  <div class="p-4 overflow-y-auto h-120 w-full">
+                    <QuizDisplay v-if="currentQuestions" :questions="currentQuestions"
+                      @quiz-completed="handleQuizCompleted" />
+
+                    <div v-else class="text-center py-8">
+                      <UIcon name="i-heroicons-arrow-path" class="animate-spin h-8 w-8 mx-auto mb-4 text-primary-500" />
+                      <p class="text-gray-600">Generando preguntas de práctica...</p>
+                    </div>
+                  </div>
+                </UCard>
+              </template>
+            </UModal>
           </div>
         </div>
       </div>
@@ -85,29 +95,7 @@
     <!-- Practice Modal -->
     <UModal v-model="showPracticeModal">
       <template #content>
-        <UCard>
-          <template #header>
-            <div class="flex items-center justify-between">
-              <h3 class="text-lg font-semibold text-gray-900">
-                Práctica: {{ currentPracticeMaterial?.title }}
-              </h3>
-              <UButton color="neutral" variant="ghost" icon="i-heroicons-x-mark" @click="closePracticeModal" />
-            </div>
-          </template>
-  
-          <div class="p-4">
-            <QuizDisplay 
-              v-if="currentQuestions"
-              :questions="currentQuestions"
-              @quiz-completed="handleQuizCompleted"
-            />
-            
-            <div v-else class="text-center py-8">
-              <UIcon name="i-heroicons-arrow-path" class="animate-spin h-8 w-8 mx-auto mb-4 text-primary-500" />
-              <p class="text-gray-600">Generando preguntas de práctica...</p>
-            </div>
-          </div>
-        </UCard>
+
       </template>
     </UModal>
   </div>
@@ -162,6 +150,7 @@ const openMaterial = (material: CourseMaterial) => {
 }
 
 const viewMaterial = (material: CourseMaterial) => {
+  console.log('Viewing material:', material)
   window.open(material.file_url, '_blank')
 }
 
@@ -188,7 +177,7 @@ const startPractice = async (material: CourseMaterial) => {
 
     const { generateQuizFromFile } = useGemini()
     const questions = await generateQuizFromFile(file)
-    
+
     currentQuestions.value = questions
   } catch (error) {
     console.error('Error generando quiz:', error)
